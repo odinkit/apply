@@ -1,0 +1,51 @@
+# Функция для подсчета общей суммы денег на всех счетах
+def calculate_total_balance(accounts):
+    total_balance = sum(accounts.values())
+    return total_balance
+
+# Функция для добавления нового счета
+def add_account(accounts, account_name, balance):
+    accounts[account_name] = balance
+    return accounts
+
+# Функция для обновления баланса существующего счета
+def update_account_balance(accounts, account_name, new_balance):
+    if account_name in accounts:
+        accounts[account_name] = new_balance
+    else:
+        print(f"Счет {account_name} не найден.")
+    return accounts
+
+# Основная часть программы
+if __name__ == '__main__':
+    # Словарь с банковскими счетами и их балансами
+    bank_accounts = {
+        'Счет 1': 1000.50,
+        'Счет 2': 2500.75,
+        'Счет 3': 3890.20,
+    }
+
+    # Вывод начальных данных
+    print("Начальные балансы счетов:")
+    for account, balance in bank_accounts.items():
+        print(f"{account}: ${balance:.2f}")
+
+    # Подсчет общей суммы денег на всех счетах
+    total_balance = calculate_total_balance(bank_accounts)
+    print(f"\nОбщая сумма на всех счетах: ${total_balance:.2f}")
+
+    # Добавление нового счета
+    bank_accounts = add_account(bank_accounts, 'Счет 4', 1500.00)
+    print("\nПосле добавления нового счета:")
+    for account, balance in bank_accounts.items():
+        print(f"{account}: ${balance:.2f}")
+
+    # Обновление баланса существующего счета
+    bank_accounts = update_account_balance(bank_accounts, 'Счет 2', 3000.00)
+    print("\nПосле обновления баланса счета 2:")
+    for account, balance in bank_accounts.items():
+        print(f"{account}: ${balance:.2f}")
+
+    # Подсчет новой общей суммы денег на всех счетах
+    total_balance = calculate_total_balance(bank_accounts)
+    print(f"\nНовая общая сумма на всех счетах: ${total_balance:.2f}")
